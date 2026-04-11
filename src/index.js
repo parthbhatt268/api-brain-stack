@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const graphRouter   = require('./routes/graph');
 const analyseRouter = require('./routes/analyse');
+const embedRouter   = require('./routes/embed');
+const searchRouter  = require('./routes/search');
 
 const app  = express();
 const PORT = process.env.PORT || 3001;
@@ -16,6 +18,8 @@ app.get('/health', (req, res) => {
 
 app.use('/graph', graphRouter);
 app.use('/api/analyse', analyseRouter);
+app.use('/api/embed',   embedRouter);
+app.use('/api/search',  searchRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
