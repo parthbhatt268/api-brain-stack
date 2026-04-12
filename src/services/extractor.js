@@ -211,7 +211,14 @@ async function extractContent(url) {
   const source = detectSource(url);
 
   switch (source) {
-    case 'youtube':  return { source, ...(await extractYouTube(url)) };
+    case 'youtube':
+      // Captions may be disabled, not yet generated, or blocked from server IPs.
+      // Fall back to Readability on the watch page (gets title + description at minimum).
+      try {
+        return { source, ...(await extractYouTube(url)) };
+      } catch {
+        return { source, ...(await extractArticle(url)) };
+      }
     case 'reddit':   return { source, ...(await extractReddit(url)) };
     case 'github':   return { source, ...(await extractGitHub(url)) };
     case 'linkedin':
