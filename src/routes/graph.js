@@ -1,6 +1,7 @@
 const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
 const authenticate = require('../middleware/auth');
+const { generateEmbedding } = require('../services/embedding');
 
 const router = express.Router();
 
@@ -64,7 +65,26 @@ router.post('/:userId', authenticate, async (req, res) => {
     return res.status(500).json({ error: insertError.message });
   }
 
-  res.json({ inserted: data.length });
+  // Auto-embed each node's summary immediately after saving so vector search works
+  const embedResults = await Promise.allSettled(
+    data
+      .filter(node => node.summary)
+      .map(async (node) => {
+        const vector = await generateEmbedding(node.summary);
+        const { error: embedError } = await supabase
+          .from('nodes')
+          .update({ embedding: vector })
+          .eq('id', node.id);
+        if (embedError) throw new Error(embedError.message);
+      })
+  );
+
+  const embedFailed = embedResults.filter(r => r.status === 'rejected').length;
+  if (embedFailed > 0) {
+    console.warn(`[graph] ${embedFailed}/${data.length} nodes failed to embed`);
+  }
+
+  res.json({ inserted: data.length, embedded: data.length - embedFailed });
 });
 
 module.exports = router;
