@@ -1,5 +1,27 @@
 # Brain Stack — API
 
+---
+
+## Project
+
+Today's students don't follow a linear learning path. They constantly consume content across YouTube, Reddit, Instagram, TikTok, GitHub, and countless articles, jumping between AI research, guitar tutorials, and gardening tips. But none of it sticks. It disappears into forgotten bookmarks and saved posts that never get revisited. Students have no visibility into what they are actually building and no clarity on whether they are gravitating toward AI, music, or something else entirely.
+
+Brain Stack gives that scattered learning a home. When something interesting shows up while scrolling, users hit the share button and send it straight to Brain Stack. It handles everything from there: extracting content from videos, posts, or articles, classifying it into the right category, and placing it onto a personal knowledge graph that grows with every save. That graph can be searched at any point, turning random media consumption into a visible career trajectory the student is building on their own terms.
+
+---
+
+## Outcome
+
+**Clarity on direction** — as a student's graph grows, patterns emerge. The categories with the most nodes are the ones they keep coming back to. Brain Stack makes those interests visible, so a student can see their own career trajectory taking shape instead of guessing at it.
+
+**Instant recall through semantic search** — a student can ask a natural language question like _"that video about training neural networks"_ and the app finds the right node using vector similarity, even if the query shares no words with the original content.
+
+**Zero friction to save** — a student shares a URL and walks away. AI handles classification, subcategory, source detection, and summary automatically. The knowledge graph builds itself.
+
+**Secured behind Google** — every node and search is private to the student. Signing in with Google keeps the entire knowledge base protected and persistent across every device.
+
+---
+
 The Express backend for Brain Stack, a personal knowledge graph that lets you save, classify, and semantically search content from across the web.
 
 ---
