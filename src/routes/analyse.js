@@ -18,7 +18,7 @@ Given the title and full content of a webpage, video transcript, or repository R
 
 - category: one short lowercase word that best describes the topic (e.g. "ai", "finance", "cooking", "music", "fitness", "design", "politics")
 - subcategory: a 2–4 word phrase that is more specific, or null if unclear (e.g. "LLM fine-tuning", "index funds", "Italian cuisine")
-- summary: a 150–200 word summary written in plain English. Capture the main idea, key points, and why it matters. Do not truncate — write the full summary.
+- summary: a summary of exactly ~100 words written in plain English. Capture the main idea, key points, and why it matters. Do not exceed 100 words.
 - origin: always the string "added"
 
 Rules:
