@@ -12,7 +12,9 @@ function detectSource(urlString) {
   if (host.includes('youtube.com') || host.includes('youtu.be')) return 'youtube';
   if (host.includes('reddit.com'))   return 'reddit';
   if (host.includes('github.com'))   return 'github';
-  if (host.includes('linkedin.com')) return 'linkedin';
+  if (host.includes('linkedin.com'))  return 'linkedin';
+  if (host.includes('instagram.com')) return 'instagram';
+  if (host.includes('tiktok.com'))    return 'tiktok';
   return 'article';
 }
 

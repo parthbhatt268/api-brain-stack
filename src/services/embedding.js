@@ -1,8 +1,8 @@
 'use strict';
 
-// Gemini text-embedding-004 — 768-dimensional embeddings, no API key tier issues
+// gemini-embedding-001 — supports 768 / 1536 / 3072 dims via output_dimensionality
 const EMBEDDING_URL =
-  'https://generativelanguage.googleapis.com/v1beta/models/text-embedding-004:embedContent';
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent';
 
 async function generateEmbedding(text) {
   const res = await fetch(EMBEDDING_URL, {
@@ -12,8 +12,9 @@ async function generateEmbedding(text) {
       'x-goog-api-key': process.env.GOOGLE_API_KEY,
     },
     body: JSON.stringify({
-      model:   'models/text-embedding-004',
-      content: { parts: [{ text }] },
+      model:                'models/gemini-embedding-001',
+      content:              { parts: [{ text }] },
+      output_dimensionality: 768,
     }),
     signal: AbortSignal.timeout(15000),
   });
